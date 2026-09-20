@@ -1,0 +1,20 @@
+# Rust build artifacts
+target/
+target-avx2/
+target-portable/
+
+# E7 footprint object/build directory
+impl/e7_footprint/build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+*.swp

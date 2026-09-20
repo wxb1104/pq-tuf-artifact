@@ -1,0 +1,35 @@
+[package]
+name = "pqbench"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+# PQClean AVX2-optimized algorithm cores (x86_64). Off => clean-C reference core.
+# The bundled 4x Keccak (SHA-3) in pqcrypto-internals is always built with AVX2
+# on x86_64 by its build system regardless of this switch; see README.
+simd-avx2 = [
+    "pqcrypto-dilithium/avx2",
+    "pqcrypto-falcon/avx2",
+    "pqcrypto-sphincsplus/avx2",
+]
+
+[dependencies]
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+# default-features=false drops the crates' default "avx2" so a plain build is
+# the scalar clean-C tier; the simd-avx2 feature turns AVX2 cores back on.
+pqcrypto-dilithium = { version = "0.5", default-features = false, features = ["std"] }
+pqcrypto-falcon = { version = "0.4.1", default-features = false, features = ["std"] }
+pqcrypto-sphincsplus = { version = "0.7.2", default-features = false, features = ["std"] }
+pqcrypto-traits = "0.3.5"
+rand = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+
+# Vendored pqcrypto-internals: identical to crates.io 0.2.11 except build.rs
+# honors PQTUF_NO_AVX2 to skip the always-on 4x AVX2 Keccak, enabling a true
+# scalar/clean-C portable tier. The AVX2 tier leaves PQTUF_NO_AVX2 unset.
+[patch.crates-io]
+pqcrypto-internals = { path = "vendor/pqcrypto-internals" }

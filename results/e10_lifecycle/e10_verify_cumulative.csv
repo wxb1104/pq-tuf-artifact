@@ -1,0 +1,9 @@
+tier,strategy,primary_verify_365_s,ECU_verify_365_s
+avx2,C,0.131,0.041
+avx2,F,0.3,0.094
+avx2,QA,0.205,0.062
+avx2,OPT,0.2,0.061
+portable,C,0.158,0.049
+portable,F,0.785,0.245
+portable,QA,0.432,0.128
+portable,OPT,0.315,0.098

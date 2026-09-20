@@ -1,0 +1,10 @@
+# Core TUF metadata framework and signer/key abstractions.
+# Pinned to the evaluated environment (Section 8.1 of the paper).
+python-tuf==7.0.1
+securesystemslib==1.5.1
+cryptography==50.0.1
+
+# Analysis, ordinary least-squares fits, and plotting (E1-E10).
+numpy
+pandas
+matplotlib

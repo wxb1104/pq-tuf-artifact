@@ -1,0 +1,5 @@
+stage,k,root_wire_B,n_sig,keys_block,sig_block,accepted,old_threshold_ok,new_threshold_ok,new_qs_valid,version_ok,nonroot_preserved,n_old_sigs,n_new_sigs,verify_avx2_us,verify_portable_us
+stage0,0,28830,3,26494,643,True,,,,,,,,85.4,70.4
+stage1,1,58500,6,42206,14553,True,True,True,2,True,True,3,3,229.9,359.7
+stage2,2,71768,6,42206,27821,True,True,True,2,True,True,3,3,289.0,578.6
+stage3,3,96650,6,52534,42363,True,True,True,3,True,True,3,3,368.2,924.0

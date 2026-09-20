@@ -1,0 +1,2 @@
+variant,n,min,p25,median,p75,max,mean,stdev,distinct_lengths
+fndsa1024,3000,1260,1269,1271,1273,1282,1270.718,3.154,23

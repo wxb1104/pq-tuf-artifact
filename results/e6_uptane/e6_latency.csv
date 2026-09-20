@@ -1,0 +1,9 @@
+strategy,tier,T_partial_ECU_us,T_full_steady_us,T_full_bootstrap_us
+C,portable,135.1,432.2,594.3
+C,avx2,112.2,359.0,493.6
+F,portable,672.3,2151.4,2958.2
+F,avx2,257.0,822.4,1130.8
+QA,portable,350.0,1184.4,1776.3
+QA,avx2,170.1,561.7,812.2
+OPT,portable,269.3,861.8,2152.4
+OPT,avx2,166.4,547.1,958.3

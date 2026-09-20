@@ -1,0 +1,5 @@
+strategy,per_update_primary_B,per_update_ECU_B,primary_cum_365_B,ECU_cum_365_B,rollover_spikes_primary_B,rollover_share_primary_pct,rollover_share_ECU_pct
+C,6205,1571,2264825,573415,0,NA,NA
+F,124142,34743,45311830,12681195,0,NA,NA
+QA,60504,14840,22083960,5416600,0,NA,NA
+OPT,39274,9534,14788846,3706828,453836,3.07,6.12

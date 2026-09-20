@@ -1,0 +1,5 @@
+attack,expect_accepted,observed_accepted,old_ok,new_ok,new_qs_ok,version_ok
+A_missing_old_side,False,False,False,True,True,True
+B_missing_new_side,False,False,True,False,False,True
+C_version_not_incremented,False,False,True,True,True,False
+D_QS_downgrade_t_classical,False,False,True,True,False,True

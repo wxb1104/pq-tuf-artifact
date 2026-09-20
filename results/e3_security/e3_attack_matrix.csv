@@ -1,0 +1,23 @@
+id,family,goal,attack,expected,observed,exception,passed,defense
+S1,threshold,G1,"valid quorum metadata (1C+1hybrid, t=2,k=1)",accept,accepted,,True,TUF threshold + QS count both satisfied
+S2,threshold,G1,one signature removed (1<t=2),reject,rejected,UnsignedMetadataError,True,stock TUF threshold (each keyid one vote)
+S3,threshold,G1,unauthorized foreign key adds a signature,reject,rejected,UnsignedMetadataError,True,only root-delegated keyids count
+S4,threshold,G1,classical sig spoofs a hybrid keyid,reject,rejected,UnsignedMetadataError,True,signature verified against the delegated (hybrid) public key
+S5,threshold,G1,signed body tampered after signing,reject,rejected,UnsignedMetadataError,True,signatures cover canonical signed bytes
+S6,quorum,G2,threshold met but 0 quantum-safe sigs (k=1),reject,rejected,QuorumError,True,Algorithm 2 QS-count check rejects quantum-vulnerable quorum
+S8,combiner,G3,hybrid PQ component stripped,reject,rejected,UnsignedMetadataError,True,length-prefixed combiner: missing component fails verification
+S9,combiner,G3,hybrid classical component replaced by attacker,reject,rejected,UnsignedMetadataError,True,classical component bound to the delegated C public key
+S10,combiner,G3,hybrid PQ component replaced by attacker key,reject,rejected,UnsignedMetadataError,True,PQ component bound to the delegated Q public key
+S11,combiner,G3,classical component signed without tau tag,reject,rejected,UnsignedMetadataError,True,domain-separation tag tau binds each component to its context
+S12,downgrade,G3,metadata advertises unregistered keytype,reject,rejected,DeserializationError,True,TAP9-style algorithm whitelist rejects unknown algorithms
+N1,freshness,G5,normal v1 update accepted,accept,accepted,,True,standard TUF update workflow
+N1b,freshness,G5,monotonic v2 update accepted,accept,accepted,,True,version numbers advance
+N2,freshness,G5,rollback: serve v1 metadata after v2,reject,rejected,RollbackError,True,monotonic version state on the client
+N3,freshness,G5,freeze: expired timestamp,reject,rejected,FreezeError,True,timestamp expiry enforced
+N4,freshness,G5,mix-and-match: target file content tampered,reject,rejected,MixMatchError,True,targets metadata binds file length/hash
+N5,freshness,G5,mix-and-match: foreign snapshot wired in,reject,rejected,MixMatchError,True,timestamp binds snapshot by hash/version
+R-A,rotation,G4,A missing old side,reject,rejected,verify_rotation=False,True,double-threshold root self-bootstrap (old+new)
+R-B,rotation,G4,B missing new side,reject,rejected,verify_rotation=False,True,double-threshold root self-bootstrap (old+new)
+R-C,rotation,G4,C version not incremented,reject,rejected,verify_rotation=False,True,double-threshold root self-bootstrap (old+new)
+R-D,rotation,G4,D QS downgrade t classical,reject,rejected,verify_rotation=False,True,double-threshold root self-bootstrap (old+new)
+R-OK,rotation,G4,legitimate 3-stage PQ root rotation accepted,accept,accepted,,True,double-threshold root self-bootstrap (old+new)
